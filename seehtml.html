@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>錶哥網-html預覽器</title>
+  <title>錶哥網-html編輯器</title>
   <link rel="icon" href="https://ryan1114-carer.github.io/images/favico.png" type="image/png" />
   <style>
     body {
@@ -77,19 +77,21 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="title">錶哥網</h1>
+    <h3 class="title">錶哥網</h3>
   </div>
 
   <div class="content">
-    <button onclick="toggleView('code')">寫代碼</button>
-    <button onclick="toggleView('preview')">預覽</button>
+    <button onclick="toggleView('code')">✏️</button>
+    <button onclick="toggleView('preview')">👀</button>
+    <button onclick="saveToLocal()">💾</button>
+    <button onclick="loadFromLocal()">🔍</button>
   </div>
 
   <div class="content" id="codeSection">
     <textarea id="codeArea" placeholder="錶哥熊需要HTML代碼"></textarea>
     <br/>
-    <button onclick="see()">預覽更新</button>
-    <button onclick="download()">下載</button>
+    <button onclick="see()">🍿</button>
+    <button onclick="download()">👇</button>
   </div>
 
   <div class="content" id="previewSection">
@@ -132,6 +134,22 @@
       a.download = 'cousinbear_file.html';
       a.click();
       URL.revokeObjectURL(url);
+    }
+
+    function saveToLocal() {
+      const code = document.getElementById('codeArea').value;
+      localStorage.setItem('savedHTML', code);
+      alert('已儲存代碼！');
+    }
+
+    function loadFromLocal() {
+      const saved = localStorage.getItem('savedHTML');
+      if (saved) {
+        document.getElementById('codeArea').value = saved;
+        alert('已載入儲存的代碼');
+      } else {
+        alert('沒有儲存的代碼');
+      }
     }
   </script>
 </body>
