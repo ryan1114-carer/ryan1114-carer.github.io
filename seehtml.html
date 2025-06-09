@@ -81,14 +81,14 @@
   </div>
 
   <div class="content">
-    <button onclick="toggleView('code')">‹/›</button>
-    <button onclick="toggleView('preview')">•</button>
+    <button onclick="toggleView('code')">寫代碼</button>
+    <button onclick="toggleView('preview')">預覽</button>
   </div>
 
   <div class="content" id="codeSection">
     <textarea id="codeArea" placeholder="錶哥熊需要HTML代碼"></textarea>
     <br/>
-    <button onclick="see()">預覽</button>
+    <button onclick="see()">預覽更新</button>
     <button onclick="download()">下載</button>
   </div>
 
@@ -129,7 +129,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'code.html';
+      a.download = 'cousinbear_file.html';
       a.click();
       URL.revokeObjectURL(url);
     }
