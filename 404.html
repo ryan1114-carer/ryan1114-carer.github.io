@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>錶哥網-404</title>
-  <link rel="icon" href="https://ryan1114-carer.github.io/images/404error.png" type="image/png" />
+  <title>錶哥網-主畫面</title>
+  <link rel="icon" href="https://ryan1114-carer.github.io/images/favico.png" type="image/png" />
   <style>
     body {
       background: #f2fff2;
@@ -13,7 +13,7 @@
       font-family: sans-serif;
       font-weight: bold;
     }
-    .backhome {
+    button {
       background: #22b14c;
       height: 50px;
       width: 150px;
@@ -23,9 +23,9 @@
       cursor: pointer;
       border-radius: 8px;
     }
-    .backhome:hover {
+    button:hover {
       background: #000000;
-      color: #ffffff;
+      color: #ffff;
     }
     .container {
       background: #22b14c;
@@ -33,26 +33,94 @@
       height: 60px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       position: fixed;
       top: 0;
       left: 0;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
     .title {
       color: #ffffff;
-      text-align: left;
     }
     .content {
       margin-top: 120px;
       text-align: center;
     }
+    .crad {
+      border-radius: 16px;
+      padding: 16px;
+      background-color: #c0e0b8;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      text-align: center;
+    }
+    #yt, #fb, #tiktok {
+      border: none;
+      cursor: pointer;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+    }
+    #yt { background-image: url('https://ryan1114-carer.github.io/images/icon/youtube.png'); background-color: red; }
+    #fb { background-image: url('https://ryan1114-carer.github.io/images/icon/facebook.png'); background-color: blue; }
+    #tiktok { background-image: url('https://ryan1114-carer.github.io/images/icon/tiktok.png'); background-color: black; }
   </style>
+  <script>
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    function setCookie(name, value, days = 7) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
+    }
+
+    async function fetchUser(token) {
+      const res = await fetch('https://api.github.com/user', {
+        headers: {
+          Authorization: `token ${token}`
+        }
+      });
+      const data = await res.json();
+      if (data.login) {
+        setCookie('username', data.login);
+        document.getElementById('login-btn').innerText = `Hi, ${data.login}`;
+      }
+    }
+
+    window.onload = () => {
+      const url = new URL(window.location.href);
+      const code = url.searchParams.get('code');
+      const username = getCookie('username');
+
+      if (username) {
+        document.getElementById('login-btn').innerText = `Hi, ${username}`;
+      } else if (code) {
+        fetch(`https://your-backend-server.com/oauth/github?code=${code}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.access_token) {
+              fetchUser(data.access_token);
+            }
+          });
+      }
+    };
+  </script>
 </head>
 <body>
   <div class="container">
     <h3 class="title">錶哥網</h3>
+    <a href="https://github.com/login/oauth/authorize?client_id=Ov23li4eQPHmmXrXTusx&scope=user">
+      <button id="login-btn">登入</button>
+    </a>
   </div>
-  <div class="content">
+    <div class="content">
     <img src="https://ryan1114-carer.github.io/images/404error.png"
       alt="錯誤小圖示"
       height="130px"
