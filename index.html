@@ -16,7 +16,6 @@
     button {
       background: #22b14c;
       height: 50px;
-      width: 150px;
       color: #ffffff;
       font-size: 24px;
       border: none;
@@ -68,139 +67,20 @@
     #fb { background-image: url('https://ryan1114-carer.github.io/images/icon/facebook.png'); background-color: blue; }
     #tiktok { background-image: url('https://ryan1114-carer.github.io/images/icon/tiktok.png'); background-color: black; }
   </style>
-  <script>
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-    function setCookie(name, value, days = 7) {
-      const d = new Date();
-      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-      document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
-    }
-
-    async function fetchUser(token) {
-      const res = await fetch('https://api.github.com/user', {
-        headers: {
-          Authorization: `token ${token}`
-        }
-      });
-      const data = await res.json();
-      if (data.login) {
-        setCookie('username', data.login);
-        document.getElementById('login-btn').innerText = `Hi, ${data.login}`;
-      }
-    }
-
-    window.onload = () => {
-      const url = new URL(window.location.href);
-      const code = url.searchParams.get('code');
-      const username = getCookie('username');
-
-      if (username) {
-        document.getElementById('login-btn').innerText = `Hi, ${username}`;
-      } else if (code) {
-        fetch(`https://your-backend-server.com/oauth/github?code=${code}`)
-          .then(res => res.json())
-          .then(data => {
-            if (data.access_token) {
-              fetchUser(data.access_token);
-            }
-          });
-      }
-    };
-  </script>
 </head>
 <body>
   <div class="container">
     <h3 class="title">錶哥網</h3>
     <a href="https://github.com/login/oauth/authorize?client_id=Ov23li4eQPHmmXrXTusx&scope=user">
-      <button id="login-btn">登入</button>
+      <button id="login-btn">登入tonkey丟失</button>
     </a>
   </div>
   <div class="content">
-    <img src="https://ryan1114-carer.github.io/images/favico.png"
+    <img src="https://ryan1114-carer.github.io/images/404error.png"
       alt="網頁圖"
       height="130px"
       width="130px">
-    <h1>歡迎！</h1>
-    <hr/>
-    <h3>歡迎來到錶哥熊的個人網站</h3>
-    <h3>我的興趣是：編程、吃零食、畫畫、做動畫</h3>
-    <h3>我喜歡吃：甜食、花椰菜、鹹酥雞</h3>
-  </div>
-  <div class="content">
-    <hr/>
-    <h2>「錶哥熊」的故事</h2>
-    <p>很久之前，我生日時媽媽送我一個手錶</p>
-    <p>我很開心，我戴口罩時，發現口罩的圖案是熊</p>
-    <p>我想到好主意，把熊加上藍色的蝴蝶結</p>
-    <p>因為手錶，我因此創造了「錶哥熊」，後來我想做動畫</p>
-    <p>「錶哥無言小動畫」也因此生產</p>
-  </div>
-  <div class="content">
-    <hr/>
-    <h2>我的社交平台</h2>
-    <a href="https://www.youtube.com/@user-carer1114" target="_blank">
-      <button id="yt" title="YT頻道"></button>
-    </a>
-    <a href="https://www.facebook.com/share/1CDF23in1e/" target="_blank">
-      <button id="fb" title="FB帳號"></button>
-    </a>
-    <a href="https://tiktok.com/@carer1114" target="_blank">
-      <button id="tiktok" title="抖音短片"></button>
-    </a>
-  </div>
-  <div class="content">
-    <hr/>
-    <h2>聯絡我們</h2>
-    <h3>email：biaogexiong@gmail.com</h3>
-    <a href="mailto:biaogexiong@gmail.com?subject=錶哥熊的個人網站：回報錯誤&body=【遇到的問題】您遇到了什麼問題【錯誤資訊】瀏覽器版本： 瀏覽器名稱：手機/電腦/平板品牌： 【其他】待補充的說明">
-    <button>回報錯誤</button>
-    </a>
-    <a href="https://github.com/ryan1114-carer/ryan1114-carer.github.io/issues">
-    <button>提交issues</button>
-    </a>
-  </div>
-  <div class="content">
-    <hr/>
-    <h2>學歷</h2>
-    <div class="crad">
-      <h3>國小</h3>
-      <p>高雄市大寮區翁園國小</p>
-    </div>
-  </div>
-  <div class="content">
-    <hr/>
-    <h2>桌布</h2>
-    <h3>經典桌布</h3>
-    <a href="https://ryan1114-carer.github.io/images/tablecloth/tablecloth3.png" download>
-      <img src="https://ryan1114-carer.github.io/images/tablecloth/tablecloth3.png"
-        height="250px"
-        width="170px"
-        alt="經典桌布1">
-    </a>
-    <a href="https://ryan1114-carer.github.io/images/tablecloth/tablecloth5.png" download>
-      <img src="https://ryan1114-carer.github.io/images/tablecloth/tablecloth5.png"
-        height="170px"
-        width="250px"
-        alt="經典桌布2">
-    </a>
-    <a href="https://ryan1114-carer.github.io/tablecloths.html">
-      <button>更多桌布</button>
-    </a>
-  </div>
-  <div class="content">
-    <hr/>
-    <h2>作品</h2>
-    <a href="https://ryan1114-carer.github.io/seehtml.html">
-    <button>HTML預覽器</button>
-    </a>
-    <a href="https://ryan1114-carer.github.io/mods.html">
-    <button>MC模組</button>
-    </a>
-  </div>
+    <h1>錶哥網已移位</h1>
+    <a href="biaogexiong.github.io"><button>帶您到新網頁</button></a>
 </body>
 </html>
